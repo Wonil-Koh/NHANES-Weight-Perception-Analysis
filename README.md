@@ -1,26 +1,35 @@
 # Gender Disparities in Weight Perception among U.S. Adults
-### : A Cross-Sectional Study using NHANES 2017-2018 Data
+### : A Propensity-Matched Analysis using NHANES 2017-2018 Data
 
 ## 1. Background
-In the field of public health, accurate weight perception is a key factor in obesity management. However, there is a hypothesis that the discrepancy between actual Body Mass Index (BMI) and self-perceived weight status may vary significantly by gender due to social pressures.
+In public health, the discrepancy between actual Body Mass Index (BMI) and self-perceived weight status is a known phenomenon. However, it is debated whether this discrepancy is driven by biological differences or sociocultural pressures.
 
 ## 2. Objective
-This project aims to analyze the **National Health and Nutrition Examination Survey (NHANES)** data to determine whether gender influences self-perceived overweight status, even after adjusting for actual BMI and age.
+To determine whether gender influences self-perceived overweight status when **actual BMI is identical**, utilizing a 1:1 matching technique to control for confounding variables.
 
 ## 3. Methods
-* **Data Source:** NHANES 2017-2018 (CDC)
-* **Population:** 5,727 U.S. Adults (Age 20+)
-* **Tools:** Python, Pandas, Statsmodels
-* **Statistical Analysis:** Multivariate Logistic Regression (Adjusted for Age & BMI)
+* **Data Source:** NHANES 2017-2018 (CDC), n=5,727 (Pre-matching).
+* **Study Design:** Cross-sectional study with **1:1 Nearest Neighbor Matching**.
+* **Statistical Analysis:**
+    * **Matching:** To eliminate BMI differences, we matched each male subject with a female subject having the nearest BMI value (Euclidean distance).
+    * **Balance Check:** T-test was used to verify no significant difference in BMI between groups after matching.
+    * **Outcome Analysis:** Chi-square test to compare the prevalence of self-perceived overweight status.
 
 ## 4. Key Findings (Results)
-After adjusting for age and actual BMI, the analysis revealed a significant gender disparity:
-* **Women were 2.25 times more likely** to perceive themselves as overweight compared to men with the same BMI (aOR = 2.25, P < 0.001).
-* **Age** was not a significant predictor of weight perception after controlling for BMI.
+**1) Balance Check (Success)**
+Before matching, BMI differed significantly between genders (P < 0.001). After 1:1 matching (n=2,769 pairs), there was **no statistical difference in BMI** between men and women (P = 0.996).
+
+**2) Perception Gap (Significant)**
+Even with identical BMI profiles, a substantial gender gap remained:
+* **Perceived as Overweight:**
+    * Women: **55.7%**
+    * Men: **43.2%**
+* **Statistical Significance:** P < 0.001 (Chi-square test)
 
 ## 5. Conclusion
-This study provides statistical evidence of **body image distortion among U.S. women**. Even when objective body mass is identical, women are significantly more likely to feel overweight, suggesting a need for gender-sensitive approaches in public health interventions.
+This study provides robust evidence that **body image distortion in women is independent of actual body mass**. By strictly controlling for BMI, we demonstrated that women are **12.5% points more likely** to perceive themselves as overweight than men of the exact same physique. This suggests strong sociocultural influences on weight perception among U.S. women.
 
 ---
 *Author: Wonil Koh, KMD, Ph.D.*
+*Tools: Python (Pandas, Scikit-learn, Scipy)*
 *Contact: wkoh1231@gmail.com*
